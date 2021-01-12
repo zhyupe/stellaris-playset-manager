@@ -54,6 +54,17 @@
       selectFile () {
         this.$refs.file.click()
       },
+      saveFile () {
+        const dbData = db.export()
+        const el = this.$refs.download
+
+        el.href = URL.createObjectURL(new Blob([dbData]))
+        el.click()
+
+        setTimeout(() => {
+          URL.revokeObjectURL(el.href)
+        }, 1500)
+      },
       handleFile () {
         const files = this.$refs.file.files
         if (files.length === 0) return

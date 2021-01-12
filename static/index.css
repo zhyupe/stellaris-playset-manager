@@ -65,6 +65,14 @@ h1 {
   text-align: center;
 }
 
+.selector-buttons {
+  text-align: center;
+}
+
+.selector-buttons button + button {
+  margin-left: 10px;
+}
+
 .selector p {
   margin: 10px 0 0;
   font-size: 14px;

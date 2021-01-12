@@ -13,7 +13,11 @@
   <div id="app">
     <h1 class="title">Stellaris Playset Manager</h1>
     <div class="selector">
-      <button class="large" @click="selectFile">Select launcher database ...</button>
+      <div class="selector-buttons">
+        <button class="large" @click="selectFile">Select launcher database ...</button>
+        <button class="large" v-show="loaded" @click="saveFile">Save</button>
+      </div>
+      <a download="launcher-v2.sqlite" ref="download" style="display: none">&nbsp;</a>
       <input type="file" ref="file" @change="handleFile" style="display: none" />
       <p>The database should located at <code>Documents\Paradox Interactive\Stellaris\launcher-v2.sqlite</code></p>
     </div>
