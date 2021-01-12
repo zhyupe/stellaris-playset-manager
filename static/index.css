@@ -1,0 +1,155 @@
+body {
+  background: #fafafa;
+}
+
+button {
+  padding: 5px 10px;
+  border: 1px solid #2fa2bd;
+  border-radius: 3px;
+  background: #fff;
+  color: #2fa2bd;
+  cursor: pointer;
+}
+
+button.large {
+  padding: 10px 20px;
+}
+
+input, textarea {
+  padding: 5px 10px;
+  border: 1px solid #2fa2bd;
+  border-radius: 3px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+textarea.readonly {
+  background: #2fa2bd18;
+}
+
+input, textarea, button {
+  outline: 0;
+  transition: box-shadow .2s ease-in-out;
+}
+
+input:active, input:focus, textarea:active, textarea:focus, button:hover, button:focus {
+  box-shadow: 0 0 5px #2fa2bd80;
+}
+
+a {
+  color: #2fa2bd;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: #2fa2bda0;
+}
+
+#app {
+  margin: 0 auto;
+  padding-top: 60px;
+  max-width: 960px;
+}
+
+h1 {
+  text-align: center;
+  font-weight: normal;
+}
+
+.selector {
+  text-align: center;
+}
+
+.selector p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.data {
+  padding: 20px 0;
+}
+
+.data textarea {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+.data-help {
+  margin-bottom: 5px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.wrapper > div {
+  width: 50%;
+  padding: 0 10px;
+}
+
+.wrapper h2 {
+  margin: 0 0 10px;
+  font-weight: normal;
+}
+
+.playset-info {
+  display: flex;
+  padding: 5px 0;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.playset-expand {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}
+
+.playset-name {
+  flex: 1;
+}
+
+.mods {
+  margin: 0;
+  padding: 5px 0 5px 40px;
+  max-height: 200px;
+  overflow-y: scroll;
+  border-radius: 5px;
+  font-size: 12px;
+  background: #2fa2bd18;
+}
+
+.mods li {
+  padding: 2px 0;
+}
+
+.import-status {
+  margin-top: 20px;
+}
+
+.import-form {
+  display: flex;
+  margin-top: 10px;
+}
+
+.import-form input {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.export-data {
+  margin-top: 20px;
+}
+
+.export-data textarea {
+  margin-top: 10px;
+}

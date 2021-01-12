@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stellaris Playset Manager</title>
+  <link rel="stylesheet" href="static/index.css">
+</head>
+
+<body>
+  <div id="app">
+    <h1 class="title">Stellaris Playset Manager</h1>
+    <div class="selector">
+      <button class="large" @click="selectFile">Select launcher database ...</button>
+      <input type="file" ref="file" @change="handleFile" style="display: none" />
+      <p>The database should located at <code>Documents\Paradox Interactive\Stellaris\launcher-v2.sqlite</code></p>
+    </div>
+    <div v-show="loaded" class="data" style="display: none;">
+      <div class="data-help">
+        Paste the shared data below to import, or copy them for share. You can also use <a :href="exportLink" @click.stop>this link</a> for sharing.
+      </div>
+      <textarea v-model="data"></textarea>
+    </div>
+    <div v-show="loaded" class="wrapper" style="display: none;">
+      <div class="import">
+        <h2>Import</h2>
+        <ol v-show="importMods.length" class="mods">
+          <li v-for="mod in importMods" :key="mod.steamId">
+            <template v-if="mod.unknown">
+              <span style="color: red">!Unknown! {{ mod.steamId }}</span>
+            </template>
+            <template v-else>
+              {{ mod.name }}
+            </template>
+          </li>
+        </ol>
+        <div v-show="importMods.length" class="import-status">
+          <template v-if="unknownMods === 0">
+            {{ importMods.length }} mod(s) to be imported.
+          </template>
+          <template v-else>
+            {{ importMods.length }} mod(s) to be imported, <span style="color: red">with {{ unknownMods }} mod(s) not found in your database</span>.
+            You need to subscribe them on Steam first and start the launcher once, then select your database again.
+          </template>
+        </div>
+        <div v-show="importMods.length" class="import-form">
+          <input v-model="importName" placeholder="Input playset name">
+          <button>Import</button>
+        </div>
+      </div>
+      <div class="export">
+        <h2>Export</h2>
+        <div>
+          <div v-for="playset in playsets" :key="playset.id" v-show="playset.mods.length">
+            <div class="playset-info" @click="handleExpand(playset.id)">
+              <span class="playset-expand">{{ activePlayset === playset.id ? '-' : '+' }}</span>
+              <span class="playset-name">{{ playset.name }} ({{ playset.mods.length }} Mods)</span>
+              <a href="javascript:void(0)" @click.stop="exportPlayset(playset)">Export</a>
+            </div>
+            <ol class="mods" v-show="activePlayset === playset.id">
+              <li v-for="mod in playset.mods">
+                {{ mod.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.4.0/dist/sql-wasm.min.js" integrity="sha512-fYYdvx4lQ90HQ+2NhX5mpAUwnn9LwIuUc+gaG02z7LMfKoaE6GcZjZYD79LovSi4QfqcZ0+T3moNJcFCXKBWbA==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js" integrity="sha512-BKbSR+cfyxLdMAsE0naLReFSLg8/pjbgfxHh/k/kUC82Hy7r6HtR5hLhobaln2gcTvzkyyehrdREdjpsQwy2Jw==" crossorigin="anonymous"></script> -->
+  <script src="static/index.js"></script>
+</body>
+</html>
